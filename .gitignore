@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Diretórios e arquivos de build
+dist/
+build/
+coverage/
+
+# Arquivos de configuração do ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Diretórios específicos de IDEs
+.idea/
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.swp
+*.swo
+
+# Arquivos gerados por pacotes
+package-lock.json
+yarn.lock
