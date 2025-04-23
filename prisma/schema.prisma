@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://admin:K%237vG!pRz9@localhost:5432/db_llm_meter"
+}
+
+model Measure {
+  id              String   @id @default(uuid())
+  customerCode    String
+  measureType     String
+  measureDatetime DateTime
+  measureValue    Int
+  imageUrl        String
+  hasConfirmed    Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([customerCode, measureType, measureDatetime])
+}
