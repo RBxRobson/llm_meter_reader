@@ -7,9 +7,12 @@ export const uploadSchema = z.object({
     required_error: 'Data da medição obrigatória',
     invalid_type_error: 'Data inválida',
   }),
-  measure_type: z.enum(['WATER', 'GAS'], {
-    errorMap: () => ({ message: 'Tipo de medição deve ser WATER ou GAS' }),
-  }),
+  measure_type: z
+    .string()
+    .transform((value) => value.toUpperCase())
+    .refine((value) => ['WATER', 'GAS'].includes(value), {
+      message: 'O tipo de medição deve ser declarada como WATER ou GAS',
+    }),
 });
 
 export type UploadInput = z.infer<typeof uploadSchema>;
