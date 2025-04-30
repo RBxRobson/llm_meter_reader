@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import express, { Request, Response } from 'express';
-import uploadRoutes from './routes/upload.route';
+import uploadRoute from './routes/upload.route';
+import confirmRoute from './routes/confirm.route';
 import path from 'path';
 
 const app = express();
@@ -14,7 +15,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('API de Medições Ativa');
 });
 
-app.use(uploadRoutes);
+app.use(uploadRoute);
+app.use(confirmRoute);
 app.use('/uploads', express.static(path.join('/app/uploads')));
 
 // Tratamento de encerramento do servidor
