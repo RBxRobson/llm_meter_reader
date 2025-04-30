@@ -33,7 +33,7 @@ export class InvalidModelResponseError extends Error {
 // ---------------------- || ---------------------- \\
 
 // Erros para o controller da rota upload
-export class InvalidUploadDataError extends Error {
+export class InvalidDataError extends Error {
   code = 'INVALID_DATA';
   constructor(message?: string) {
     super(message);
@@ -46,6 +46,24 @@ export class DoubleReportError extends Error {
   constructor() {
     super('Leitura do mês já realizada');
     this.name = 'DoubleReportError';
+  }
+}
+// ---------------------- || ---------------------- \\
+
+// Erros para o controller da rota confirm
+export class MeasureNotFoundError extends Error {
+  code = 'MEASURE_NOT_FOUND';
+  constructor() {
+    super('Não existe nenhuma leitura cadastrada com o uuid fornecido');
+    this.name = 'MeasureNotFoundError';
+  }
+}
+
+export class ConfirmationDuplicateError extends Error {
+  code = 'CONFIRMATION_DUPLICATE';
+  constructor() {
+    super('A leitura informada já foi confirmada');
+    this.name = 'MeasureNotFoundError';
   }
 }
 // ---------------------- || ---------------------- \\
