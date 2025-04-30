@@ -1,0 +1,37 @@
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - '80:80'
+    environment:
+      NODE_ENV: production
+      PORT: 80
+      COMPOSE_BAKE: true
+    depends_on:
+      - db
+    networks:
+      - app_network
+    volumes:
+      - ./uploads:/app/uploads
+  db:
+    image: postgres:16
+    container_name: pg_llm_meter
+    restart: always
+    environment:
+      POSTGRES_DB: db_llm_meter
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 'K#7vG!pRz9'
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  pgdata:

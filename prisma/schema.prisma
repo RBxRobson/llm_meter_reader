@@ -1,11 +1,12 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../node_modules/.prisma/client"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://admin:K%237vG!pRz9@localhost:5432/db_llm_meter"
+  url      = "postgresql://admin:K%237vG!pRz9@db:5432/db_llm_meter"
 }
 
 model Measure {
