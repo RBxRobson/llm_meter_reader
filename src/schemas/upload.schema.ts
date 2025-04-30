@@ -3,10 +3,17 @@ import { z } from 'zod';
 export const uploadSchema = z.object({
   image: z.string().min(1, 'Imagem obrigatória'),
   customer_code: z.string().min(1, 'Código do cliente obrigatório'),
-  measure_datetime: z.coerce.date({
-    required_error: 'Data da medição obrigatória',
-    invalid_type_error: 'Data inválida',
-  }),
+  measure_datetime: z.coerce
+    .date({
+      required_error: 'Data da medição obrigatória',
+      invalid_type_error: 'Data inválida',
+    })
+    .refine((date) => !isNaN(date.getTime()), {
+      message: 'Data inválida',
+    })
+    .refine((date) => date <= new Date(), {
+      message: 'A data da medição não pode ser no futuro',
+    }),
   measure_type: z
     .string()
     .transform((value) => value.toUpperCase())
