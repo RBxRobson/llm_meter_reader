@@ -33,6 +33,11 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/.env ./.env
 COPY --from=builder /app/uploads ./uploads
 
+# Copia os arquivos necessários para hospedar a documentação na rota inicial
+COPY --from=builder /app/src/templates ./dist/templates
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/README.md ./
+
 # Expõe a porta que o seu app usa
 EXPOSE 80
 

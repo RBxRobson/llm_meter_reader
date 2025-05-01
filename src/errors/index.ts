@@ -67,3 +67,21 @@ export class ConfirmationDuplicateError extends Error {
   }
 }
 // ---------------------- || ---------------------- \\
+
+// Erros para o controller da rota measuresList
+export class MeasuresNotFoundError extends Error {
+  code = 'MEASURES_NOT_FOUND';
+  constructor() {
+    super('Nenhuma leitura encontrada');
+    this.name = 'MeasureNotFoundError';
+  }
+}
+
+export class InvalidTypeError extends Error {
+  code = 'INVALID_TYPE';
+  constructor() {
+    super('Tipo de medição não permitida');
+    this.name = 'MeasureNotFoundError';
+  }
+}
+// ---------------------- || ---------------------- \\
