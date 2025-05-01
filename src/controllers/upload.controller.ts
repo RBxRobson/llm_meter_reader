@@ -3,7 +3,7 @@ import { RequestHandler } from 'express';
 import { uploadSchema } from '../schemas/upload.schema';
 import { base64Checker } from '../utils/base64Checker.util';
 import { createMeasureService } from '../services/createMeasure.service';
-import { DoubleReportError, InvalidUploadDataError } from '../errors';
+import { DoubleReportError, InvalidDataError } from '../errors';
 
 export const uploadController =
   (prisma: PrismaClient): RequestHandler =>
@@ -17,7 +17,7 @@ export const uploadController =
         const errorMessage = parsed.error.errors
           .map((e) => e.message)
           .join(', ');
-        throw new InvalidUploadDataError(errorMessage);
+        throw new InvalidDataError(errorMessage);
       }
 
       const { customer_code, measure_datetime, measure_type } = parsed.data;
@@ -26,7 +26,7 @@ export const uploadController =
       // Verifica se o arquivo base64 enviado é válido
       const validatedImage = await base64Checker(image);
       if (!validatedImage) {
-        throw new InvalidUploadDataError(
+        throw new InvalidDataError(
           'O arquivo base64 enviado não é um formato suportado para leitura.'
         );
       }
@@ -50,7 +50,7 @@ export const uploadController =
       res.status(200).json(result);
     } catch (err: any) {
       // Erro de dados inválidos no upload
-      if (err instanceof InvalidUploadDataError) {
+      if (err instanceof InvalidDataError) {
         res.status(400).json({
           error_code: err.code,
           error_description: err.message,
