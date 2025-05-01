@@ -1,7 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import uploadRoute from './routes/upload.route';
 import confirmRoute from './routes/confirm.route';
+import measuresListRoute from './routes/measuresList.route';
+import readmeRoute from './routes/readme.route';
 import path from 'path';
 
 const app = express();
@@ -10,14 +12,17 @@ const prisma = new PrismaClient();
 // Middleware de JSON com limite
 app.use(express.json({ limit: '10mb' }));
 
-// Rotas da aplicação
-app.get('/', (req: Request, res: Response) => {
-  res.send('API de Medições Ativa');
-});
+// Servir a pasta public
+app.use('/public', express.static(path.join('/app/public')));
 
+// Servir as imagens enviadas nas medições
+app.use('/uploads', express.static(path.join('/app/uploads')));
+
+// Rotas da aplicação
+app.use(readmeRoute);
 app.use(uploadRoute);
 app.use(confirmRoute);
-app.use('/uploads', express.static(path.join('/app/uploads')));
+app.use(measuresListRoute);
 
 // Tratamento de encerramento do servidor
 process.on('SIGINT', async () => {
