@@ -1,13 +1,17 @@
 import { PrismaClient } from '@prisma/client';
+import path from 'path';
+import compression from 'compression';
 import express from 'express';
 import uploadRoute from './routes/upload.route';
 import confirmRoute from './routes/confirm.route';
 import measuresListRoute from './routes/measuresList.route';
 import readmeRoute from './routes/readme.route';
-import path from 'path';
 
 const app = express();
 const prisma = new PrismaClient();
+
+// Usa o compression para otimizar as requisições
+app.use(compression());
 
 // Middleware de JSON com limite
 app.use(express.json({ limit: '10mb' }));
@@ -16,7 +20,13 @@ app.use(express.json({ limit: '10mb' }));
 app.use('/public', express.static(path.join('/app/public')));
 
 // Servir as imagens enviadas nas medições
-app.use('/uploads', express.static(path.join('/app/uploads')));
+app.use(
+  '/uploads',
+  express.static('/app/uploads', {
+    maxAge: '7d',
+    etag: false,
+  })
+);
 
 // Rotas da aplicação
 app.use(readmeRoute);
