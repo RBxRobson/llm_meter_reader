@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Measure } from '@prisma/client';
 import { MeasuresNotFoundError } from '../errors';
 
 interface GetMeasureListInput {
@@ -17,11 +17,6 @@ export const getMeasureListService = async (
       ...(measure_type && { measureType: measure_type }),
     },
     orderBy: { measureDatetime: 'desc' },
-    omit: {
-      measureValue: true,
-      updatedAt: true,
-      createdAt: true,
-    },
   });
 
   // Se não encontrar nenhuma leitura, lançar erro
@@ -32,7 +27,7 @@ export const getMeasureListService = async (
   // Retorna a estrutura esperada
   return {
     customer_code,
-    measures: measures.map((m) => ({
+    measures: measures.map((m: Measure) => ({
       measure_uuid: m.id,
       measure_datetime: m.measureDatetime,
       measure_type: m.measureType,
