@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { RequestHandler } from 'express';
-import { listQuerySchema } from '../schemas/measuresList.schema';
+
 import { InvalidTypeError, MeasuresNotFoundError } from '../errors';
+import { listQuerySchema } from '../schemas/measuresList.schema';
 import { getMeasureListService } from '../services/measuresList.service';
 
 export const listMeasuresController =
@@ -26,7 +27,7 @@ export const listMeasuresController =
       );
 
       res.status(200).json(measures);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Erro para tipo de medição inválido
       if (err instanceof InvalidTypeError) {
         res.status(400).json({

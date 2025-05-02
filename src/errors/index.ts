@@ -1,4 +1,4 @@
-// Erros no consumo do Gemini
+// Erros no consumo do Gemini \\
 export class InvalidMeterError extends Error {
   code = 'INVALID_METER';
   constructor() {
@@ -32,7 +32,7 @@ export class InvalidModelResponseError extends Error {
 }
 // ---------------------- || ---------------------- \\
 
-// Erros para o controller da rota upload
+// Erros para o controller da rota upload \\
 export class InvalidDataError extends Error {
   code = 'INVALID_DATA';
   constructor(message?: string) {
@@ -50,7 +50,7 @@ export class DoubleReportError extends Error {
 }
 // ---------------------- || ---------------------- \\
 
-// Erros para o controller da rota confirm
+// Erros para o controller da rota confirm \\
 export class MeasureNotFoundError extends Error {
   code = 'MEASURE_NOT_FOUND';
   constructor() {
@@ -68,7 +68,7 @@ export class ConfirmationDuplicateError extends Error {
 }
 // ---------------------- || ---------------------- \\
 
-// Erros para o controller da rota measuresList
+// Erros para o controller da rota measuresList \\
 export class MeasuresNotFoundError extends Error {
   code = 'MEASURES_NOT_FOUND';
   constructor() {

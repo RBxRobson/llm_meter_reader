@@ -62,7 +62,7 @@ Recebe uma imagem em base64 e retorna a medição extraída pela API Gemini.
   "image": "base64",
   "customer_code": "string",
   "measure_datetime": "datetime",
-  "measure_type": "WATER" ou "GAS"
+  "measure_type": "WATER" "ou" "GAS"
 }
 ```
 
@@ -73,7 +73,7 @@ Recebe uma imagem em base64 e retorna a medição extraída pela API Gemini.
 ```json
 {
   "image_url": "string",
-  "measure_value": integer,
+  "measure_value": "integer",
   "measure_uuid": "string"
 }
 ```
@@ -110,7 +110,7 @@ Confirma ou corrige o valor lido pela IA.
 ```json
 {
   "measure_uuid": "string",
-  "confirmed_value": integer
+  "confirmed_value": "integer"
 }
 ```
 
@@ -173,7 +173,7 @@ Lista todas as medições realizadas por um cliente. É possível filtrar por ti
       "measure_uuid": "string",
       "measure_datetime": "datetime",
       "measure_type": "string",
-      "has_confirmed": boolean,
+      "has_confirmed": "boolean",
       "image_url": "string"
     }
   ]
@@ -219,15 +219,3 @@ docker-compose up --build
 ```
 
 A aplicação será exposta na porta 80.
-
-## Contribuindo
-
-1. Faça o **fork** do repositório.
-2. Crie uma **branch** para a sua feature ou correção (`git checkout -b feature/nova-feature`).
-3. Faça o **commit** das suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`).
-4. **Push** para a sua branch (`git push origin feature/nova-feature`).
-5. Abra um **pull request**.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).

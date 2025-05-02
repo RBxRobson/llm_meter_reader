@@ -55,7 +55,7 @@ export async function base64Checker(
     }
 
     return { mimeType, base64: base64Data };
-  } catch (error) {
+  } catch {
     return false;
   }
 }
