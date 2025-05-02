@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { RequestHandler } from 'express';
-import { uploadSchema } from '../schemas/upload.schema';
-import { base64Checker } from '../utils/base64Checker.util';
-import { createMeasureService } from '../services/createMeasure.service';
+
 import { DoubleReportError, InvalidDataError } from '../errors';
+import { uploadSchema } from '../schemas/upload.schema';
+import { createMeasureService } from '../services/createMeasure.service';
+import { base64Checker } from '../utils/base64Checker.util';
 
 export const uploadController =
   (prisma: PrismaClient): RequestHandler =>
@@ -48,7 +49,7 @@ export const uploadController =
 
       // Retorna o resultado da criação da medição
       res.status(200).json(result);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Erro de dados inválidos no upload
       if (err instanceof InvalidDataError) {
         res.status(400).json({

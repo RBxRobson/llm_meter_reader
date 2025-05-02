@@ -1,10 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+
 import { PrismaClient } from '@prisma/client';
 import { fileTypeFromBuffer } from 'file-type';
 import { v4 as uuidv4 } from 'uuid';
-import { processImage } from './processImage.service';
+
 import { DoubleReportError } from '../errors';
+
+import { processImage } from './processImage.service';
 
 export const createMeasureService = async (
   data: {

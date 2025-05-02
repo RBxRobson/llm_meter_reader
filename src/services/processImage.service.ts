@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+
 import {
   InvalidMeterError,
   UnreadableImageError,
@@ -55,6 +56,7 @@ export const processImage = async (
         throw new InvalidModelResponseError();
       }
       return value;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const isRetryable = error?.status === 503 || error?.status === 500;
 

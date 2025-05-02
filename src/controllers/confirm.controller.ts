@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import { RequestHandler } from 'express';
-import { confirmSchema } from '../schemas/confirm.schema';
-import { confirmMeasureService } from '../services/confirmMeasure.service';
+
 import {
   ConfirmationDuplicateError,
   InvalidDataError,
   MeasureNotFoundError,
 } from '../errors';
+import { confirmSchema } from '../schemas/confirm.schema';
+import { confirmMeasureService } from '../services/confirmMeasure.service';
 
 export const confirmController =
   (prisma: PrismaClient): RequestHandler =>
@@ -36,7 +37,7 @@ export const confirmController =
 
       // Retorna o resultado da criação da medição
       res.status(200).json(result);
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Erro de dados inválidos
       if (err instanceof InvalidDataError) {
         res.status(400).json({

@@ -32,3 +32,6 @@ Thumbs.db
 # Arquivos gerados por pacotes
 package-lock.json
 yarn.lock
+
+prisma/migrations/
+uploads/

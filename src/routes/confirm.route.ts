@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
+
 import { confirmController } from '../controllers/confirm.controller';
 
 const router = Router();

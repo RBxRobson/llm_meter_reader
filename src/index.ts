@@ -1,11 +1,13 @@
-import { PrismaClient } from '@prisma/client';
 import path from 'path';
+
+import { PrismaClient } from '@prisma/client';
 import compression from 'compression';
 import express from 'express';
-import uploadRoute from './routes/upload.route';
+
 import confirmRoute from './routes/confirm.route';
 import measuresListRoute from './routes/measuresList.route';
 import readmeRoute from './routes/readme.route';
+import uploadRoute from './routes/upload.route';
 
 const app = express();
 const prisma = new PrismaClient();
